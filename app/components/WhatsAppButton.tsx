@@ -23,6 +23,12 @@ export default function WhatsAppButton() {
       (window as any).fbq("track", "Lead", { event_id: eventId });
     }
 
+    if (typeof window !== "undefined" && (window as any).gtag) {
+      (window as any).gtag("event", "conversion", {
+        send_to: "AW-18257144074/KIV0CI20t8UcEIrS14FE",
+      });
+    }
+
     fetch("/api/capi", {
       method: "POST",
       headers: { "Content-Type": "application/json" },
