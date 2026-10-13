@@ -1,3 +1,4 @@
+import type { ReactNode } from "react";
 import CTAButton from "./CTAButton";
 
 const stats = [
@@ -30,7 +31,33 @@ const stats = [
   },
 ];
 
-export default function Hero() {
+const defaultHeadline = (
+  <>
+    Seus direitos trabalhistas{" "}
+    <span className="text-accent">foram violados?</span>
+    <br />
+    Nós atuamos para você.
+  </>
+);
+
+const defaultSubheadline = (
+  <>
+    Atendimento humanizado, direito descomplicado. Você entende cada
+    passo do seu processo. Já ajudamos mais de{" "}
+    <strong className="text-white font-semibold">2.000 trabalhadores</strong>{" "}
+    em todo o Brasil.
+  </>
+);
+
+type HeroProps = {
+  headline?: ReactNode;
+  subheadline?: ReactNode;
+};
+
+export default function Hero({
+  headline = defaultHeadline,
+  subheadline = defaultSubheadline,
+}: HeroProps) {
   return (
     <section
       className="relative flex items-center justify-center text-white overflow-hidden min-h-[90vh] lg:min-h-screen"
@@ -59,18 +86,12 @@ export default function Hero() {
 
           {/* Headline */}
           <h1 className="font-heading font-bold text-[2rem] sm:text-5xl leading-[1.15] mb-5">
-            Seus direitos trabalhistas{" "}
-            <span className="text-accent">foram violados?</span>
-            <br />
-            Nós atuamos para você.
+            {headline}
           </h1>
 
           {/* Subtext */}
           <p className="text-[15px] sm:text-lg text-white/75 leading-relaxed mb-8 max-w-lg mx-auto lg:mx-0">
-            Atendimento humanizado, direito descomplicado. Você entende cada
-            passo do seu processo. Já ajudamos mais de{" "}
-            <strong className="text-white font-semibold">2.000 trabalhadores</strong>{" "}
-            em todo o Brasil.
+            {subheadline}
           </p>
 
           {/* Stats */}
