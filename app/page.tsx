@@ -1,3 +1,4 @@
+import GoogleTagManager from "./components/GoogleTagManager";
 import Header from "./components/Header";
 import Hero from "./components/Hero";
 import SocialProof from "./components/SocialProof";
@@ -12,6 +13,7 @@ import WhatsAppButton from "./components/WhatsAppButton";
 export default function Home() {
   return (
     <>
+      <GoogleTagManager variant="home" />
       <Header />
       <main>
         <Hero />

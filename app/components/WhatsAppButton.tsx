@@ -1,6 +1,7 @@
 "use client";
 
 import { useEffect, useState } from "react";
+import { getConversionSendTo, getVariant } from "../lib/tracking";
 
 export default function WhatsAppButton() {
   const [visible, setVisible] = useState(false);
@@ -25,7 +26,7 @@ export default function WhatsAppButton() {
 
     if (typeof window !== "undefined" && (window as any).gtag) {
       (window as any).gtag("event", "conversion", {
-        send_to: "AW-18257144074/KIV0CI20t8UcEIrS14FE",
+        send_to: getConversionSendTo(window.location.pathname),
       });
     }
 
@@ -41,8 +42,14 @@ export default function WhatsAppButton() {
     }).catch(() => {});
 
     const phone = process.env.NEXT_PUBLIC_WHATSAPP || "69992561864";
+    // Variante /trabalhista ganha ", por favor" para identificar a origem no WhatsApp.
+    const suffix =
+      getVariant(window.location.pathname) === "trabalhista"
+        ? ", por favor."
+        : ".";
     const msg = encodeURIComponent(
-      "Olá, vim pelo site e gostaria de saber mais sobre meus direitos trabalhistas."
+      "Olá, vim pelo site e gostaria de saber mais sobre meus direitos trabalhistas" +
+        suffix
     );
     window.open(`https://wa.me/55${phone}?text=${msg}`, "_blank");
   }

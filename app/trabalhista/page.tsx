@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import GoogleTagManager from "../components/GoogleTagManager";
 import Header from "../components/Header";
 import Hero from "../components/Hero";
 import SocialProof from "../components/SocialProof";
@@ -18,6 +19,7 @@ export const metadata: Metadata = {
 export default function Trabalhista() {
   return (
     <>
+      <GoogleTagManager variant="trabalhista" />
       <Header />
       <main>
         <Hero
